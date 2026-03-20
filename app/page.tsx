@@ -122,20 +122,23 @@ export default function Home() {
     }
   };
 
-  // 下载图片 - 通过我们的 API 绕过跨域
-  const downloadImage = (image: GeneratedImage) => {
+  // 下载图片 - 直接下载，GitHub Pages 兼容
+  const downloadImage = async (image: GeneratedImage) => {
     try {
-      // 通过后端代理下载，避免跨域问题
-      const downloadUrl = `/api/download?url=${encodeURIComponent(image.url)}&filename=ai-generated-${image.id}.png`;
+      // 直接获取图片并blob下载，绕过跨域
+      const response = await fetch(image.url);
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
-      a.href = downloadUrl;
+      a.href = url;
       a.download = `ai-generated-${image.id}.png`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
+      URL.revokeObjectURL(url);
     } catch (error) {
       console.error("下载失败:", error);
-      alert("下载失败");
+      alert("下载失败，可能是跨域限制，请右键图片 -> 图片另存为");
     }
   };
 
