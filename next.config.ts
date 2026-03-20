@@ -1,10 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
-  basePath: "/vibe-coding-portfolio",
+  reactCompiler: false,
   images: {
-    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.volces.com",
+      },
+    ],
   },
 };
 
