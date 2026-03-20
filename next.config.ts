@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "export",
   basePath: "/vibe-coding-portfolio",
-  reactCompiler: true,
+  reactCompiler: false,
   images: {
     unoptimized: true,
   },
