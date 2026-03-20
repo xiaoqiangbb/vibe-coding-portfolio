@@ -66,7 +66,7 @@ export default function Home() {
 
     setIsGenerating(true);
     try {
-      const body: any = { prompt: prompt.trim(), size };
+      const body: Record<string, unknown> = { prompt: prompt.trim(), size };
       
       // 如果有输入图片，转成 base64 传给后端
       if (inputImage) {
@@ -151,45 +151,45 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900">
       {/* Header */}
       <header className="sticky top-0 z-10 bg-black/20 backdrop-blur-lg border-b border-white/10">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
+        <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-6">
+          <div className="flex items-center justify-between flex-wrap gap-3">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
                 AI 画廊 🎨
               </h1>
-              <p className="text-gray-300 text-sm mt-1">
+              <p className="text-gray-300 text-xs sm:text-sm mt-1">
                 文生图 / 图生图，收藏你喜欢的 AI 作品
               </p>
             </div>
             <button
               onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all ${
+              className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-full border transition-all ${
                 showFavoritesOnly
                   ? "bg-pink-500 border-pink-500 text-white"
                   : "bg-white/5 border-white/20 text-gray-200 hover:bg-white/10"
               }`}
             >
               <Heart className={`w-4 h-4 ${showFavoritesOnly ? "fill-current" : ""}`} />
-              {showFavoritesOnly ? "显示全部" : "只看收藏"}
+              <span className="text-sm sm:text-base">{showFavoritesOnly ? "显示全部" : "只看收藏"}</span>
             </button>
           </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-3 sm:px-4 py-6 sm:py-8">
         {/* Generate Form */}
-        <section className="max-w-2xl mx-auto mb-12">
-          <form onSubmit={generateImage} className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-white/10 shadow-xl">
-            <h2 className="text-xl md:text-2xl font-bold text-white mb-4 flex items-center gap-2">
-              <Sparkles className="w-6 h-6 text-yellow-400" />
+        <section className="max-w-2xl mx-auto mb-8 sm:mb-12">
+          <form onSubmit={generateImage} className="bg-white/5 backdrop-blur-lg rounded-2xl p-4 sm:p-6 md:p-8 border border-white/10 shadow-xl">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
+              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400" />
               生成新图片
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <textarea
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 placeholder="描述你想要生成的图片，比如：一只可爱的猫咪在云端看书，水彩风格..."
-                className="w-full h-24 px-4 py-3 bg-black/30 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+                className="w-full h-20 sm:h-24 px-3 sm:px-4 py-2 sm:py-3 bg-black/30 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none text-sm sm:text-base"
               />
 
               {/* 参考图预览 */}
@@ -259,7 +259,7 @@ export default function Home() {
               <button
                 type="submit"
                 disabled={isGenerating || (!prompt.trim() && !inputImage)}
-                className="w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm sm:text-base"
               >
                 {isGenerating ? (
                   <span className="flex items-center justify-center gap-2">
@@ -293,7 +293,7 @@ export default function Home() {
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
               {displayedImages.map((image) => (
                 <div
                   key={image.id}
