@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 export const runtime = 'edge';
 
 const VOLCENGINE_API_KEY = process.env.VOLCENGINE_API_KEY;
-const VOLCENGINE_IMAGE_MODEL = process.env.VOLCENGINE_IMAGE_MODEL || 'doubao-seedream-5-0-260128;
+const VOLCENGINE_IMAGE_MODEL = process.env.VOLCENGINE_IMAGE_MODEL || 'doubao-seedream-5-0-260128';
 
 const sizeMap = {
   "2K": "1024x1792",
