@@ -3,8 +3,9 @@ import { NextResponse } from 'next/server';
 export const runtime = 'edge';
 
 const VOLCENGINE_API_KEY = process.env.VOLCENGINE_API_KEY?.trim();
-// 硬编码正确的模型 ID，确保不会错
-const VOLCENGINE_IMAGE_MODEL = "ep-m-20260317232203-clkfl";
+// 模型 ID 就是 doubao-seedream-5-0-260128
+// ep-m-xxxxxx 是推理接入点 ID
+const VOLCENGINE_IMAGE_MODEL = "doubao-seedream-5-0-260128";
 
 const sizeMap = {
   "2K": "1024x1792",
