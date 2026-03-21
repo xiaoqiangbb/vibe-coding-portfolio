@@ -45,9 +45,15 @@ export async function POST(request: Request) {
     });
 
     if (!response.ok) {
-      const error = await response.text();
-      console.error("火山API错误:", error);
-      return NextResponse.json({ error: `生成失败: ${response.statusText} - ${error}` }, { status: response.status });
+      let errorText = "";
+      try {
+        const errorJson = await response.json();
+        errorText = JSON.stringify(errorJson);
+      } catch(e) {
+        errorText = await response.text();
+      }
+      console.error("火山API错误:", errorText);
+      return NextResponse.json({ error: `生成失败: ${response.statusText} - ${errorText}` }, { status: response.status });
     }
 
     const data = await response.json();
