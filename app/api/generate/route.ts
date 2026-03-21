@@ -46,7 +46,7 @@ export async function POST(request: Request) {
     if (!response.ok) {
       const error = await response.text();
       console.error("火山API错误:", error);
-      return NextResponse.json({ error: `生成失败: ${response.statusText}` }, { status: response.status });
+      return NextResponse.json({ error: `生成失败: ${response.statusText} - ${error}` }, { status: response.status });
     }
 
     const data = await response.json();
