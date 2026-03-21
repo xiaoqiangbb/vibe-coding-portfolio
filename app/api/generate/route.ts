@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     const [width, height] = actualSize.split('x').map(Number);
 
     // 调用火山引擎 API
-    const response = await fetch("https://aquasearch.volcengineapi.com/v1/chat/completions", {
+    const response = await fetch("https://ark.cn-beijing.volces.com/api/v3/chat/completions", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${VOLCENGINE_API_KEY}`,
